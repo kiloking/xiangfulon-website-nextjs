@@ -11,7 +11,7 @@ function AboutThree() {
 
       <div 
         className='w-full md:w-1/2  md:h-screen  px-10 py-16 bg-center bg-no-repeat bg-cover'
-        style={{backgroundImage: `url(${'/images/blockbg.png' })`}}
+        style={{backgroundImage: `url(${'./images/blockbg.png' })`}}
       >
         <MenuOne />
         <div className='text-[#012c48] text-2xl font-bold py-6'>祥富龍/祥旭龍實業 建築4C學</div>
@@ -54,7 +54,7 @@ function AboutThree() {
           delay: 0.1,
         }}
         className='w-full md:w-1/2 h-[60vh] md:h-screen bg-cover bg-center bg-no-repeat'
-        style={{backgroundImage: `url(${'/images/about/aboutbg-3.png' })`}}
+        style={{backgroundImage: `url(${'./images/about/aboutbg-3.png' })`}}
       ></motion.div>
     </div>
   )

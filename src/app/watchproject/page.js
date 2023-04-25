@@ -55,7 +55,7 @@ function WatchOldProject() {
   },[currentIndex])
   return (
     <div className='w-full min-h-screen bg-cover bg-center bg-no-repeat '
-      style={{backgroundImage: `url(${'/images/blockbg.png' })`}}
+      style={{backgroundImage: `url(${'./images/blockbg.png' })`}}
     > 
       {
         data && <Head meta_title={data.meta_title} meta_description={data.meta_description}/>
@@ -67,7 +67,7 @@ function WatchOldProject() {
       {data ?
         <div className='px-10 py-14 flex flex-col md:flex-row gap-6 '>
           <div className='w-full md:w-1/3'>
-            <img src={"/images/oldworks/"+ data.project_code+'@3x.png' } alt="" className='max-w-full'/>
+            <img src={"./images/oldworks/"+ data.project_code+'@3x.png' } alt="" className='max-w-full'/>
           </div>
           <ul className='w-full md:w-1/2 leading-10 text-zinc-800 mt-10 text-lg'>
             {data.title            && <div className='text-2xl text-[#003049] font-bold mb-4'>{data.title}</div> }
@@ -113,7 +113,7 @@ function WatchOldProject() {
               data.albums.map((item,index)=>{
                 return(
                   <SwiperSlide key={'main'+index} >
-                    <img src={'/images/oldworks/album/'+item}  className="w-full"/>
+                    <img src={'./images/oldworks/album/'+item}  className="w-full"/>
                   </SwiperSlide>
                 )
               })
@@ -134,7 +134,7 @@ function WatchOldProject() {
                       className={'hover:brightness-100 cursor-pointer transition-all' + (index === currentIndex ? ' brightness-100' : ' brightness-50')}
                       onClick={()=>(handleClick(index))}
                     >
-                      <img src={'/images/oldworks/album/'+item }alt="" />
+                      <img src={'./images/oldworks/album/'+item }alt="" />
                     </li>
                   )
                 })

@@ -22,7 +22,7 @@ function SwiperBgImages({imgData}) {
             return(
               <SwiperSlide key={index}>
                 <div className='w-full bg-cover bg-no-repeat bg-center h-screen '
-                  style={{backgroundImage: `url(${'/images/home/'+ item.image})`}}
+                  style={{backgroundImage: `url(${'./images/home/'+ item.image})`}}
                 >
                 </div>
               </SwiperSlide>

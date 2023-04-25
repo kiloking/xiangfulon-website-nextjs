@@ -9,7 +9,7 @@ function NewsTwo() {
   return (
     <div 
       className='w-full bg-[#F9F9F9] bg-cover bg-center bg-no-repeat min-h-screen'
-      style={{backgroundImage: `url(${'/images/blockbg.png' })`}}
+      style={{backgroundImage: `url(${'./images/blockbg.png' })`}}
     >
 
       <div className='px-10 py-16'>

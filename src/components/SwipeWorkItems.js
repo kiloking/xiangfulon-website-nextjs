@@ -52,7 +52,7 @@ function SwipeWorkItems({data}) {
                     delay: 0.1 * index,
                   }}
                   className='border p-3 shadow min-w-[220px] w-full'>
-                    <div className='w-full'><img src={process.env.PUBLIC_URL+'/images/oldworks/'+ item.cover_image} alt="" className='w-full' /></div>
+                    <div className='w-full'><img src={'./images/oldworks/'+ item.cover_image} alt="" className='w-full' /></div>
                     <div className='text-xl  font-bold text-zinc-500 mt-3 mb-3'>{item.title}</div>
                   </motion.div>
 

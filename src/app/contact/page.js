@@ -46,7 +46,7 @@ function Contact() {
   return (
     <div 
       className='w-full  min-h-screen  relative bg-center bg-no-repeat bg-cover text-zinc-900 bg-fixed'
-      style={{backgroundImage: `url(${'/images/bg05.png' })`}}
+      style={{backgroundImage: `url(${'./images/bg05.png' })`}}
     >
 
       <motion.div className='flex w-full justify-center items-center  min-h-screen flex-col relative pt-14 md:pt-0'>
