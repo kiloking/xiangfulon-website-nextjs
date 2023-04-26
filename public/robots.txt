@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://xiangfulong.com.tw
+
+# Sitemaps
+Sitemap: https://xiangfulong.com.tw/sitemap.xml

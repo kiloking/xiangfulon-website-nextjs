@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "18.16.0",
     "@types/react": "18.0.38",
+    "next-sitemap": "^4.0.7",
     "typescript": "5.0.4"
   }
 }
