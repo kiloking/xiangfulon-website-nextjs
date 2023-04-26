@@ -1,9 +1,13 @@
 # *
 User-agent: *
+Disallow: /404
+
+# *
+User-agent: *
 Allow: /
 
 # Host
-Host: https://xiangfulong.com.tw
+Host: https://xiangfulong.com.tw/
 
 # Sitemaps
-Sitemap: https://xiangfulong.com.tw/sitemap.xml
+Sitemap: https://xiangfulong.com.tw/sitemap-0.xml
