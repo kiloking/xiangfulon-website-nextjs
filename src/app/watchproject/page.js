@@ -62,7 +62,7 @@ function WatchOldProject() {
 
       }
       <div className='px-10 pt-20 '>
-        <div onClick={() => { router.back() }} className=' cursor-pointer'><FaArrowLeft size="36px" color="black"/></div>
+        <Link href="/work-1"><FaArrowLeft size="36px" color="black"/></Link>
       </div>
       {data ?
         <div className='px-10 py-14 flex flex-col md:flex-row gap-6 '>

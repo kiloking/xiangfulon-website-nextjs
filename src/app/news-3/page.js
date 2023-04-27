@@ -1,8 +1,6 @@
 "use client";
 import React,{useState} from 'react'
-import SwipeWorkItems from '../../components/SwipeWorkItems'
 import {urbanDevProjects} from '../../components/WorkItems'
-import { MenuItems02} from '../../components/ＭenuItems'
 import { motion } from "framer-motion";
 import MenuThree from '../../components/MenuThree';
 function NewsThree_Card() {

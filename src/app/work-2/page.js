@@ -1,13 +1,10 @@
 "use client";
 import React,{useState,useEffect} from 'react'
-import SwipeWorkItems from '../../components/SwipeWorkItems'
 import {oldProjects} from '../../components/WorkItems'
-import { MenuItems02} from '../../components/ＭenuItems'
 import Link from "next/link";
-import Head from 'next/head';
 import { motion } from "framer-motion";
 import MenuTwo from '../../components/MenuTwo'
-
+import Head from '../head';
 function WorkTwo_Card() {
   const [sortedData , setSortedData] = useState(null)
   const filterThenSortData = () => {
@@ -25,12 +22,10 @@ function WorkTwo_Card() {
 
   return (
     <div className='w-full h-screen bg-[#F9F9F9] '>
-      <Head>
-        <title>三重建案集英堡六期 | 優質住宅推薦 | 祥富龍實業/祥旭龍實業 - 三重在地 建商|新北市三重區建案</title>
-        <meta name="description" content="【集英堡六期-三重區頂級建案】位於新北市三重區集英路17號，由知名建 商祥富龍實業打造。規劃坪數42.59-66.72坪，擁有11層樓高+B2F，共40戶+40車。 優質建築設計由巨仲建築師事務所操刀，施工營造由振城營造股份有限公司負責。20 14年推出，成為三重建案的矚目焦點。集英堡六期，您在三重區的最佳選擇，品質與 信譽保證。" />
-        <meta property="og:title" content="祥富龍實業/祥旭龍實業|建設公司|三蘆在地建商" />
-        <meta property="og:description" content="【祥富龍實業/祥旭龍實業-三重蘆洲專業建商】深耕三重蘆洲地區，以品 質與信譽打造優質住宅。自土木營建基層打底深耕，我們傳承了對建築的愛，代代以 建築專業傳遞美好，不僅接棒對建築的熱忱，更將創造加倍宏遠達觀的未來。" />
-      </Head>
+      <Head 
+        meta_title="三重建案集英堡六期 | 優質住宅推薦 | 祥富龍實業/祥旭龍實業 - 三重在地 建商|新北市三重區建案" 
+        meta_description="【集英堡六期-三重區頂級建案】位於新北市三重區集英路17號，由知名建 商祥富龍實業打造。規劃坪數42.59-66.72坪，擁有11層樓高+B2F，共40戶+40車。 優質建築設計由巨仲建築師事務所操刀，施工營造由振城營造股份有限公司負責。20 14年推出，成為三重建案的矚目焦點。集英堡六期，您在三重區的最佳選擇，品質與 信譽保證。" 
+      />
       <div className='px-10 py-16'>
         <MenuTwo />
         <div className='w-full grid grid-cols-1 md:grid-cols-4 gap-6'>

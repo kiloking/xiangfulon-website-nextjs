@@ -58,7 +58,7 @@ function Navbar() {
           onMouseEnter={()=>{onMouseEnter(1)}}
           onMouseLeave={onMouseLeave}
         >
-          <Link href='about-1'>品牌理念</Link>
+          <Link href='/about-1'>品牌理念</Link>
           {currentItem === 1 ? dropdown && <Dropdown menuItems={MenuItems01}/>
               : null  }
         </li>
@@ -68,7 +68,7 @@ function Navbar() {
           onMouseEnter={()=>{onMouseEnter(2)}}
           onMouseLeave={onMouseLeave}
         >
-          <Link href='work-1'>業績沿革</Link>
+          <Link href='/work-1'>業績沿革</Link>
           {currentItem === 2 ?  dropdown && <Dropdown menuItems={MenuItems02}/> : null         }
         </li>
         <div className='text-[#AE121F] mx-5'>/</div>

@@ -1,6 +1,5 @@
 "use client";
 import React from 'react'
-import { MenuItems03} from '../../components/ＭenuItems'
 import {news} from '../../components/NewsItems'
 import MenuThree from '../../components/MenuThree'
 import Link from "next/link";

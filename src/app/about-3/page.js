@@ -2,7 +2,6 @@
 import React from 'react'
 import MenuOne from '../../components/MenuOne'
 import { motion } from "framer-motion";
-import Head from 'next/head';
 function AboutThree() {
   return (
     <div 
