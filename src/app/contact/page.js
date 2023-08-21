@@ -52,7 +52,8 @@ function Contact() {
       <motion.div className='flex w-full justify-center items-center  min-h-screen flex-col relative pt-14 md:pt-0'>
         <div className='flex flex-col md:flex-row w-full md:w-9/12 gap-10 items-center'>
           <div className="w-full md:w-1/2">
-            <iframe width="100%" height="400" className="mb-10" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14458.564674461039!2d121.4714928!3d25.0462488!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5e628bbffe7dfd71!2z5YWI5ZeH5a6u!5e0!3m2!1szh-TW!2stw!4v1659426132137!5m2!1szh-TW!2stw" allowFullScreen=""/>
+            <iframe width="100%" height="400" className="mb-10" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.432430931475!2d121.48451629999998!3d25.0872192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a8d34f4ab9b1%3A0xff50371c3c2b9789!2zMjQx5paw5YyX5biC5LiJ6YeN5Y2A5LiJ5b636KGXMzbomZ8!5e0!3m2!1szh-TW!2stw!4v1692607672327!5m2!1szh-TW!2stw" allowFullScreen=""/>
+            {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.432430931475!2d121.48451629999998!3d25.0872192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a8d34f4ab9b1%3A0xff50371c3c2b9789!2zMjQx5paw5YyX5biC5LiJ6YeN5Y2A5LiJ5b636KGXMzbomZ8!5e0!3m2!1szh-TW!2stw!4v1692607672327!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> */}
           </div>
           <motion.div 
             initial={{ opacity: 0,y:'10' }}
