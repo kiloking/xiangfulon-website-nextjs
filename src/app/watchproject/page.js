@@ -1,158 +1,234 @@
 "use client";
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter,usePathname, useSearchParams } from 'next/navigation'
-import {oldProjects} from '../../components/WorkItems'
-import { FaArrowLeft } from "react-icons/fa";
-// Import Swiper React components
+import { useSearchParams } from "next/navigation";
+import { oldProjects } from "../../components/WorkItems";
+import { FaArrowLeft, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-// import required modules
-import { Autoplay,FreeMode, Navigation, Thumbs } from "swiper";
-import Head from '../head';
+import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper";
+import Head from "../head";
+
 function WatchOldProject() {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [data ,setData] = useState(null)
-  const [currentIndex, setCurrentIndex] = useState(0) 
-  const router = useRouter()
-  const searchParams = useSearchParams();
-  const pid = searchParams.get('pid');
-
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [swiper, setSwiper] = useState(null);
-  // unuse
-  const changeSlide = (length)=>{
-    const interval = setInterval(()=>{
-      if(currentIndex > length-1) {
-        setCurrentIndex(0)
-      }else{
-        setCurrentIndex((currentIndex) => currentIndex + 1)
-      }
-    },2000) 
-    
-  }
-  const si = (length) =>{
-    setInterval(changeSlide(length), 2000);
-  }
-  const stopChangeImage = () =>{
-    clearInterval(si);
-  }
+  const [data, setData] = useState(null);
+  const searchParams = useSearchParams();
+  const pid = searchParams.get("pid");
 
-  const handleClick = (index) =>{
-    swiper.slideTo(index)
-  }
+  useEffect(() => {
+    const currentData = oldProjects.find((item) => item.project_code === pid);
+    setData(currentData);
+  }, [pid]);
 
-
-  useEffect(()=>{
-    const currentData = oldProjects.find((item)=>{
-      return item.project_code === pid
-    })
-    setData(currentData)
-    // changeSlide(currentData.albums.length)
-  },[currentIndex])
   return (
-    <div className='w-full min-h-screen bg-cover bg-center bg-no-repeat '
-      style={{backgroundImage: `url(${'./images/blockbg.png' })`}}
-    > 
-      {
-        data && <Head meta_title={data.meta_title} meta_description={data.meta_description}/>
+    <div className="min-h-screen bg-white pb-14">
+      {data && (
+        <Head
+          meta_title={data.meta_title}
+          meta_description={data.meta_description}
+        />
+      )}
 
-      }
-      <div className='px-10 pt-20 '>
-        <Link href="/work-1"><FaArrowLeft size="36px" color="black"/></Link>
-      </div>
-      {data ?
-        <div className='px-10 py-14 flex flex-col md:flex-row gap-6 '>
-          <div className='w-full md:w-1/3'>
-            <img src={"./images/oldworks/"+ data.project_code+'@3x.png' } alt="" className='max-w-full'/>
+      {data && (
+        <div className="relative">
+          {/* 返回按鈕 */}
+          <div className="fixed top-20 left-8 z-50">
+            <Link
+              href="/work-1"
+              className="bg-white/80 backdrop-blur-sm p-4 rounded-full hover:bg-white transition-all duration-300 flex items-center gap-2 text-gray-700 hover:text-gray-900"
+            >
+              <FaArrowLeft /> <span>返回列表</span>
+            </Link>
           </div>
-          <ul className='w-full md:w-1/2 leading-10 text-zinc-800 mt-10 text-lg'>
-            {data.title            && <div className='text-2xl text-[#003049] font-bold mb-4'>{data.title}</div> }
-            {data.address          && <div>基地位置 / {data.address}</div>}
-            {data.land_size        && <div>基地面積 / {data.land_size}</div>} 
-            {data.house_size       && <div>規劃坪數 / {data.house_size}</div>} 
-            {data.build_floor      && <div>規劃樓層 / {data.build_floor}</div>}
-            {data.build_count      && <div>規劃戶車 / {data.build_count}</div>} 
-            {data.build_design     && <div>建築設計 / {data.build_design}</div>}
-            {data.build_create     && <div>施工營造 / {data.build_create}</div>}
-            {data.build_openspace  && <div>公共空間 / {data.build_openspace}</div>} 
-            {data.build_env        && <div>景觀設計 / {data.build_env}</div>} 
-            {data.open_year        && <div>推出日期 / {data.open_year}</div>} 
-          </ul>
-          <div className='w-full md:w-2/5 px-2 relative' >
-          <Swiper
-            onSwiper={setSwiper}
-            style={{
-              "--swiper-navigation-color": "#fff",
-              "--swiper-pagination-color": "#fff",
-            }}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            spaceBetween={10}
-            navigation={true}
-            modules={[Autoplay,FreeMode, Navigation, Thumbs]}
-            className="mySwiper2 w-full"
-            onSlideChange={(swiperCore)=>{
-              const {
-                activeIndex,
-                snapIndex,
-                previousIndex,
-                realIndex,
-              } = swiperCore;
-              console.log({ activeIndex, snapIndex, previousIndex, realIndex });
-              setCurrentIndex(activeIndex)
-            }}
-          >
-            {
-              data.albums &&
-              data.albums.map((item,index)=>{
-                return(
-                  <SwiperSlide key={'main'+index} >
-                    <img src={'./images/oldworks/album/'+item}  className="w-full"/>
+
+          {/* 主視覺區域 */}
+          <div className="h-[60vh] relative bg-gray-100">
+            {data.albums && data.albums.length > 0 ? (
+              <Swiper
+                onSwiper={setSwiper}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                }}
+                navigation={true}
+                modules={[Autoplay, Navigation]}
+                className="h-full"
+              >
+                {data.albums.map((item, index) => (
+                  <SwiperSlide key={"main" + index}>
+                    <div className="relative h-full">
+                      <img
+                        src={"./images/oldworks/album/" + item}
+                        className="w-full h-full object-cover"
+                        alt={`${data.title} - 圖片 ${index + 1}`}
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
                   </SwiperSlide>
-                )
-              })
-            }
-
-          </Swiper>
-
-            {/* {
-              data.albums && <div><img src={PUBLICURL+'/images/oldworks/album/'+data.albums[currentIndex] } alt="" /></div>
-            }*/}
-            {
-             data.albums &&  <ul className='box-border mt-7 gap-1  grid grid-cols-2 md:grid-cols-5'>
-              {
-                data.albums.map((item,index)=>{
-                  return(
-                    <li 
-                      key={index} 
-                      className={'hover:brightness-100 cursor-pointer transition-all' + (index === currentIndex ? ' brightness-100' : ' brightness-50')}
-                      onClick={()=>(handleClick(index))}
-                    >
-                      <img src={'./images/oldworks/album/'+item }alt="" />
-                    </li>
-                  )
-                })
-              }
-             </ul>
-
-
-            } 
+                ))}
+              </Swiper>
+            ) : (
+              <div className="relative h-full">
+                <img
+                  src={"./images/oldworks/" + data.project_code + "@3x.png"}
+                  className="w-full h-full object-cover"
+                  alt={data.title}
+                />
+                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/50 to-transparent"></div>
+              </div>
+            )}
           </div>
 
+          {/* 內容區域 */}
+          <div className="container mx-auto px-4 -mt-20 relative z-10">
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              {/* 標題區 */}
+              <div className="mb-8">
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                  {data.title}
+                </h1>
+                <div className="flex items-center gap-6 text-gray-600">
+                  <div className="flex items-center gap-2">
+                    <FaMapMarkerAlt className="text-blue-600" />
+                    {data.address}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FaCalendarAlt className="text-blue-600" />
+                    {data.open_year} 年完工
+                  </div>
+                </div>
+              </div>
+
+              {/* 主要資訊 */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div className="col-span-1">
+                  <h2 className="text-xl font-bold text-gray-900 mb-6 pb-2 border-b">
+                    建案規格
+                  </h2>
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                    <div className="space-y-1">
+                      <div className="text-sm text-gray-500">基地面積</div>
+                      <div className="text-lg font-medium">
+                        {data.land_size}
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-sm text-gray-500">規劃坪數</div>
+                      <div className="text-lg font-medium">
+                        {data.house_size}
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-sm text-gray-500">規劃樓層</div>
+                      <div className="text-lg font-medium">
+                        {data.build_floor}
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-sm text-gray-500">規劃戶車</div>
+                      <div className="text-lg font-medium">
+                        {data.build_count}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {data.project_code && (
+                  <div className="col-span-1">
+                    <h2 className="text-xl font-bold text-gray-900 mb-6 pb-2 border-b">
+                      立面外觀
+                    </h2>
+                    <div className="grid grid-cols-1 gap-2">
+                      <img
+                        src={
+                          "./images/oldworks/" + data.project_code + "@3x.png"
+                        }
+                        alt={data.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* 縮圖預覽 - 只在有相簿時顯示 */}
+
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900 mb-6 pb-2 border-b">
+                    更多圖片
+                  </h2>
+                  {data.albums && data.albums.length > 0 ? (
+                    <div className="grid grid-cols-3 gap-2">
+                      {data.albums.slice(0, 6).map((item, index) => (
+                        <button
+                          key={index}
+                          onClick={() => swiper.slideTo(index)}
+                          className="aspect-square rounded-lg overflow-hidden hover:opacity-90 transition-opacity"
+                        >
+                          <img
+                            src={"./images/oldworks/album/" + item}
+                            alt=""
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-gray-500">尚未有更多圖片</div>
+                  )}
+                </div>
+              </div>
+
+              {/* 建案資訊 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+                <div className="space-y-4">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b">
+                    建築團隊
+                  </h2>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">建築設計</div>
+                      <div>{data.build_design}</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">施工營造</div>
+                      <div>{data.build_create}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b">
+                    空間設計
+                  </h2>
+                  <div className="space-y-4">
+                    {data.build_openspace && (
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">
+                          公共空間
+                        </div>
+                        <div>{data.build_openspace}</div>
+                      </div>
+                    )}
+                    {data.build_env && (
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">
+                          景觀設計
+                        </div>
+                        <div>{data.build_env}</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-       
-       
-        : null }
-
-
+      )}
     </div>
-  )
+  );
 }
 
-export default WatchOldProject
+export default WatchOldProject;
