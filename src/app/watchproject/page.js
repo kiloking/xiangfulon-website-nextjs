@@ -34,15 +34,25 @@ function WatchOldProject() {
       )}
 
       {/* 頁面背景圖片 */}
-      {data && data.albums && data.albums.length > 0 && (
-        <div className="fixed inset-0 opacity-10 pointer-events-none">
-          <img
-            src={"./images/oldworks/album/" + data.albums[0]}
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </div>
-      )}
+      {data ? (
+        data.albums && data.albums.length > 0 ? (
+          <div className="fixed inset-0 opacity-10 pointer-events-none">
+            <img
+              src={"./images/oldworks/album/" + data.albums[0]}
+              className="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
+        ) : (
+          <div className="fixed inset-0 opacity-10 pointer-events-none">
+            <img
+              src={"./images/oldworks/" + data.project_code + "@3x.png"}
+              className="w-full h-full object-cover"
+              alt=""
+            />
+          </div>
+        )
+      ) : null}
 
       {data && (
         <div className="relative">
