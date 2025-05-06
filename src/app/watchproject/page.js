@@ -25,7 +25,7 @@ function WatchOldProject() {
   }, [pid]);
 
   return (
-    <div className="min-h-screen bg-white pb-14">
+    <div className="min-h-screen bg-zinc-100 pb-14">
       {data && (
         <Head
           meta_title={data.meta_title}
@@ -36,7 +36,7 @@ function WatchOldProject() {
       {/* 頁面背景圖片 */}
       {data ? (
         data.albums && data.albums.length > 0 ? (
-          <div className="fixed inset-0 opacity-10 pointer-events-none">
+          <div className="fixed inset-0 pointer-events-none opacity-20">
             <img
               src={"./images/oldworks/album/" + data.albums[0]}
               className="w-full h-full object-cover"
@@ -44,7 +44,7 @@ function WatchOldProject() {
             />
           </div>
         ) : (
-          <div className="fixed inset-0 opacity-10 pointer-events-none">
+          <div className="fixed h-[60vh] pointer-events-none w-full opacity-100">
             <img
               src={"./images/oldworks/" + data.project_code + "@3x.png"}
               className="w-full h-full object-cover"
@@ -55,7 +55,7 @@ function WatchOldProject() {
       ) : null}
 
       {data && (
-        <div className="relative">
+        <div className="relative ">
           {/* 返回按鈕 */}
           <div className="fixed top-20 left-8 z-50">
             <Link
@@ -67,7 +67,7 @@ function WatchOldProject() {
           </div>
 
           {/* 主要內容區域 */}
-          <div className="container mx-auto px-4 pt-32">
+          <div className="w-11/12 mx-auto px-4 pt-[22%]">
             {/* 上區塊：兩欄式布局 */}
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
