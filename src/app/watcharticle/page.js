@@ -19,7 +19,7 @@ function WatchArticle() {
   })
   return (
     <div className='w-full h-screen bg-cover bg-center bg-no-repeat '
-      style={{backgroundImage: `url(${'./images/blockbg.png'})`}}
+      style={{backgroundImage: `url(${'/images/blockbg.png'})`}}
     >
 
       <div className='px-10 pt-20 '>
@@ -46,7 +46,7 @@ function WatchArticle() {
             </div>
           </div>
           <div className='w-full md:w-1/2'>
-            <img src={'./images/news/'+data.article_image } alt=""  className='max-w-full' />
+            <img src={'/images/news/'+data.article_image } alt=""  className='max-w-full' />
             <div>{data.source}</div>
           </div>
         </div>

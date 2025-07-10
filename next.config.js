@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-  distDir: "dist",
-  output: 'export',
-  assetPrefix: "." ,
   reactStrictMode: true,
-  images: {
-    path: "/",
-  },
+  // 根據環境變數決定是否為靜態導出
+  ...(process.env.EXPORT_STATIC === "true" && {
+    output: "export",
+    distDir: "dist",
+    assetPrefix: ".",
+    trailingSlash: true,
+    images: {
+      unoptimized: true,
+    },
+  }),
+};
 
-}
-
-module.exports = nextConfig
+module.exports = nextConfig;

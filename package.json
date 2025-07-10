@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "EXPORT_STATIC=true next build",
     "postbuild": "next-sitemap",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
@@ -12,7 +13,7 @@
   "dependencies": {
     "autoprefixer": "10.4.14",
     "framer-motion": "^10.12.4",
-    "next": "13.3.1",
+    "next": "^13.5.11",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",

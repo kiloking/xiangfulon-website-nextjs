@@ -3,18 +3,27 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { oldProjects } from "../../components/WorkItems";
-import { FaArrowLeft, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaList,
+  FaMap,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper";
+import "swiper/css/effect-fade";
+import { Autoplay, FreeMode, Navigation, Thumbs, EffectFade } from "swiper";
 import Head from "../head";
 
 function WatchOldProject() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [swiper, setSwiper] = useState(null);
+  const [backgroundSwiper, setBackgroundSwiper] = useState(null);
+  const [mainSwiper, setMainSwiper] = useState(null);
   const [data, setData] = useState(null);
   const searchParams = useSearchParams();
   const pid = searchParams.get("pid");
@@ -36,17 +45,47 @@ function WatchOldProject() {
       {/* 頁面背景圖片 */}
       {data ? (
         data.albums && data.albums.length > 0 ? (
-          <div className="fixed inset-0 pointer-events-none opacity-20">
-            <img
-              src={"./images/oldworks/album/" + data.albums[0]}
-              className="w-full h-full object-cover"
-              alt=""
-            />
+          <div className="fixed w-full h-[55vh] pointer-events-none opacity-100">
+            {/* swiper 圖片 fade in out  autoplay */}
+            <Swiper
+              key={data.project_code}
+              onSwiper={setBackgroundSwiper}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, EffectFade]}
+              effect="fade"
+              className="w-full h-full"
+            >
+              {/* 外觀圖作為第一張 */}
+              <SwiperSlide>
+                <div className="relative aspect-[4/3] bg-gray-100">
+                  <img
+                    src={"/images/oldworks/" + data.project_code + "@3x.png"}
+                    className="w-full h-full object-contain"
+                    alt={`${data.title} - 外觀圖`}
+                  />
+                </div>
+              </SwiperSlide>
+              {/* 相簿圖片 */}
+              {data.albums.map((item, index) => (
+                <SwiperSlide key={"main" + index}>
+                  <div className="relative w-full h-full">
+                    <img
+                      src={"/images/oldworks/album/" + item}
+                      className="w-full h-full object-cover"
+                      alt={`${data.title} - 圖片 ${index + 1}`}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         ) : (
           <div className="fixed h-[60vh] pointer-events-none w-full opacity-100">
             <img
-              src={"./images/oldworks/" + data.project_code + "@3x.png"}
+              src={"/images/oldworks/" + data.project_code + "@3x.png"}
               className="w-full h-full object-cover"
               alt=""
             />
@@ -60,14 +99,17 @@ function WatchOldProject() {
           <div className="fixed top-20 left-8 z-50">
             <Link
               href="/work-1"
-              className="bg-white/80 backdrop-blur-sm p-4 rounded-full hover:bg-white transition-all duration-300 flex items-center gap-2 text-gray-700 hover:text-gray-900"
+              className="group relative bg-black/8 backdrop-blur-xl bg-white/90 px-5 py-3 rounded-full hover:bg-black/12 transition-all duration-300 flex items-center gap-2.5 text-gray-900 hover:text-black"
             >
-              <FaArrowLeft /> <span>返回列表</span>
+              <div className="relative flex items-center justify-center w-6 h-6 bg-[#8c2026] rounded-full">
+                <FaList className="text-white group-hover:text-white/80 text-sm transition-colors duration-300" />
+              </div>
+              <span className="font-medium text-sm">返回列表</span>
             </Link>
           </div>
 
           {/* 主要內容區域 */}
-          <div className="w-11/12 mx-auto px-4 pt-[22%]">
+          <div className="w-11/12 mx-auto px-4 pt-[12%]">
             {/* 上區塊：兩欄式布局 */}
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -77,7 +119,7 @@ function WatchOldProject() {
                   {data.albums && data.albums.length > 0 ? (
                     <div className="mb-4">
                       <Swiper
-                        onSwiper={setSwiper}
+                        onSwiper={setMainSwiper}
                         autoplay={{
                           delay: 4000,
                           disableOnInteraction: false,
@@ -91,7 +133,7 @@ function WatchOldProject() {
                           <div className="relative aspect-[4/3] bg-gray-100">
                             <img
                               src={
-                                "./images/oldworks/" +
+                                "/images/oldworks/" +
                                 data.project_code +
                                 "@3x.png"
                               }
@@ -105,7 +147,7 @@ function WatchOldProject() {
                           <SwiperSlide key={"main" + index}>
                             <div className="relative aspect-[4/3]">
                               <img
-                                src={"./images/oldworks/album/" + item}
+                                src={"/images/oldworks/album/" + item}
                                 className="w-full h-full object-cover"
                                 alt={`${data.title} - 圖片 ${index + 1}`}
                               />
@@ -118,7 +160,7 @@ function WatchOldProject() {
                     <div className="relative aspect-[4/3] mb-4 bg-gray-100">
                       <img
                         src={
-                          "./images/oldworks/" + data.project_code + "@3x.png"
+                          "/images/oldworks/" + data.project_code + "@3x.png"
                         }
                         className="w-full h-full object-contain rounded-lg"
                         alt={data.title}
@@ -131,12 +173,12 @@ function WatchOldProject() {
                     <div className="grid grid-cols-5 gap-1.5">
                       {/* 外觀圖縮圖 */}
                       <button
-                        onClick={() => swiper.slideTo(0)}
+                        onClick={() => mainSwiper.slideTo(0)}
                         className="relative aspect-square rounded-md overflow-hidden hover:opacity-90 transition-opacity"
                       >
                         <img
                           src={
-                            "./images/oldworks/" + data.project_code + "@3x.png"
+                            "/images/oldworks/" + data.project_code + "@3x.png"
                           }
                           alt=""
                           className="w-full h-full object-cover"
@@ -146,11 +188,11 @@ function WatchOldProject() {
                       {data.albums.map((item, index) => (
                         <button
                           key={index}
-                          onClick={() => swiper.slideTo(index + 1)}
+                          onClick={() => mainSwiper.slideTo(index + 1)}
                           className="relative aspect-square rounded-md overflow-hidden hover:opacity-90 transition-opacity"
                         >
                           <img
-                            src={"./images/oldworks/album/" + item}
+                            src={"/images/oldworks/album/" + item}
                             alt=""
                             className="w-full h-full object-cover"
                           />
@@ -175,6 +217,16 @@ function WatchOldProject() {
                       <div className="flex items-center gap-2">
                         <FaCalendarAlt className="text-blue-600" />
                         {data.open_year} 年完工
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="flex items-center gap-2 text-white bg-black/80 px-3 py-1 rounded-lg hover:bg-black/90 cursor-pointer transition-all duration-300">
+                        <FaMap className="" />
+                        <div>連到地圖</div>
+                      </div>
+                      <div className="flex items-center gap-2 text-white bg-red-900/90 px-3 py-1 rounded-lg hover:bg-red-900 cursor-pointer transition-all duration-300">
+                        <FaExternalLinkAlt className="" />
+                        詳細介紹
                       </div>
                     </div>
                   </div>
@@ -211,47 +263,54 @@ function WatchOldProject() {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 下區塊：單欄式布局 */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8">
-              {/* 建築團隊 */}
-              <div className="mb-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b">
-                  建築團隊
-                </h2>
-                <div className="space-y-4">
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">建築設計</div>
-                    <div>{data.build_design}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">施工營造</div>
-                    <div>{data.build_create}</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 空間設計 */}
-              <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b">
-                  空間設計
-                </h2>
-                <div className="space-y-4">
-                  {data.build_openspace && (
-                    <div>
-                      <div className="text-sm text-gray-500 mb-1">公共空間</div>
-                      <div>{data.build_openspace}</div>
+                  {/* 下區塊：單欄式布局 */}
+                  <div className="pt-8">
+                    {/* 建築團隊 */}
+                    <div className="mb-8">
+                      <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b">
+                        建築團隊
+                      </h2>
+                      <div className="space-y-4">
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">
+                            建築設計
+                          </div>
+                          <div>{data.build_design}</div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">
+                            施工營造
+                          </div>
+                          <div>{data.build_create}</div>
+                        </div>
+                      </div>
                     </div>
-                  )}
-                  {data.build_env && (
+
+                    {/* 空間設計 */}
                     <div>
-                      <div className="text-sm text-gray-500 mb-1">景觀設計</div>
-                      <div>{data.build_env}</div>
+                      <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b">
+                        空間設計
+                      </h2>
+                      <div className="space-y-4">
+                        {data.build_openspace && (
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              公共空間
+                            </div>
+                            <div>{data.build_openspace}</div>
+                          </div>
+                        )}
+                        {data.build_env && (
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">
+                              景觀設計
+                            </div>
+                            <div>{data.build_env}</div>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
