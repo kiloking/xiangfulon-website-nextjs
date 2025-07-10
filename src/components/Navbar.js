@@ -46,7 +46,7 @@ function Navbar() {
       <div className="">
         <Link href="/">
           <img
-            src="./images/logo01.svg"
+            src="/images/logo01.svg"
             alt=""
             className="max-w-full w-[230px]"
           />

@@ -1,8 +1,6 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { oldProjects } from "../../components/WorkItems";
+import { oldProjects } from "../../../components/WorkItems";
 import {
   FaArrowLeft,
   FaMapMarkerAlt,
@@ -11,27 +9,20 @@ import {
   FaMap,
   FaExternalLinkAlt,
 } from "react-icons/fa";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import "swiper/css/effect-fade";
-import { Autoplay, FreeMode, Navigation, Thumbs, EffectFade } from "swiper";
-import Head from "../head";
+import Head from "../../head";
+import ProjectSwiper from "../../../components/ProjectSwiper";
+import ProjectMainSwiper from "../../../components/ProjectMainSwiper";
 
-function WatchOldProject() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [backgroundSwiper, setBackgroundSwiper] = useState(null);
-  const [mainSwiper, setMainSwiper] = useState(null);
-  const [data, setData] = useState(null);
-  const searchParams = useSearchParams();
-  const pid = searchParams.get("pid");
+// 為靜態導出生成所有可能的參數組合
+export async function generateStaticParams() {
+  return oldProjects.map((item) => ({
+    pid: item.project_code,
+  }));
+}
 
-  useEffect(() => {
-    const currentData = oldProjects.find((item) => item.project_code === pid);
-    setData(currentData);
-  }, [pid]);
+function WatchOldProject({ params }) {
+  const pid = params.pid;
+  const data = oldProjects.find((item) => item.project_code === pid);
 
   return (
     <div className="min-h-screen bg-zinc-100 pb-14">
@@ -42,56 +33,15 @@ function WatchOldProject() {
         />
       )}
 
-      {/* 頁面背景圖片 */}
-      {data ? (
-        data.albums && data.albums.length > 0 ? (
-          <div className="fixed w-full h-[55vh] pointer-events-none opacity-100">
-            {/* swiper 圖片 fade in out  autoplay */}
-            <Swiper
-              key={data.project_code}
-              onSwiper={setBackgroundSwiper}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay, EffectFade]}
-              effect="fade"
-              className="w-full h-full"
-            >
-              {/* 外觀圖作為第一張 */}
-              <SwiperSlide>
-                <div className="relative aspect-[4/3] bg-gray-100">
-                  <img
-                    src={"/images/oldworks/" + data.project_code + "@3x.png"}
-                    className="w-full h-full object-contain"
-                    alt={`${data.title} - 外觀圖`}
-                  />
-                </div>
-              </SwiperSlide>
-              {/* 相簿圖片 */}
-              {data.albums.map((item, index) => (
-                <SwiperSlide key={"main" + index}>
-                  <div className="relative w-full h-full">
-                    <img
-                      src={"/images/oldworks/album/" + item}
-                      className="w-full h-full object-cover"
-                      alt={`${data.title} - 圖片 ${index + 1}`}
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        ) : (
-          <div className="fixed h-[60vh] pointer-events-none w-full opacity-100">
-            <img
-              src={"/images/oldworks/" + data.project_code + "@3x.png"}
-              className="w-full h-full object-cover"
-              alt=""
-            />
-          </div>
-        )
-      ) : null}
+      {/* 使用 ProjectSwiper 組件 */}
+      {/* <ProjectSwiper data={data} /> */}
+      <div className="fixed h-[60vh] pointer-events-none w-full opacity-100">
+        <img
+          src={"/images/oldworks/" + data.project_code + "@3x.png"}
+          className="w-full h-full object-cover"
+          alt=""
+        />
+      </div>
 
       {data && (
         <div className="relative ">
@@ -115,47 +65,9 @@ function WatchOldProject() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* 左側圖片區域 */}
                 <div>
-                  {/* 主圖輪播 */}
+                  {/* 主圖輪播 - 使用 ProjectMainSwiper */}
                   {data.albums && data.albums.length > 0 ? (
-                    <div className="mb-4">
-                      <Swiper
-                        onSwiper={setMainSwiper}
-                        autoplay={{
-                          delay: 4000,
-                          disableOnInteraction: false,
-                        }}
-                        navigation={true}
-                        modules={[Autoplay, Navigation]}
-                        className="rounded-lg overflow-hidden"
-                      >
-                        {/* 外觀圖作為第一張 */}
-                        <SwiperSlide>
-                          <div className="relative aspect-[4/3] bg-gray-100">
-                            <img
-                              src={
-                                "/images/oldworks/" +
-                                data.project_code +
-                                "@3x.png"
-                              }
-                              className="w-full h-full object-contain"
-                              alt={`${data.title} - 外觀圖`}
-                            />
-                          </div>
-                        </SwiperSlide>
-                        {/* 相簿圖片 */}
-                        {data.albums.map((item, index) => (
-                          <SwiperSlide key={"main" + index}>
-                            <div className="relative aspect-[4/3]">
-                              <img
-                                src={"/images/oldworks/album/" + item}
-                                className="w-full h-full object-cover"
-                                alt={`${data.title} - 圖片 ${index + 1}`}
-                              />
-                            </div>
-                          </SwiperSlide>
-                        ))}
-                      </Swiper>
-                    </div>
+                    <ProjectMainSwiper data={data} />
                   ) : (
                     <div className="relative aspect-[4/3] mb-4 bg-gray-100">
                       <img
@@ -172,10 +84,7 @@ function WatchOldProject() {
                   {data.albums && data.albums.length > 0 && (
                     <div className="grid grid-cols-5 gap-1.5">
                       {/* 外觀圖縮圖 */}
-                      <button
-                        onClick={() => mainSwiper.slideTo(0)}
-                        className="relative aspect-square rounded-md overflow-hidden hover:opacity-90 transition-opacity"
-                      >
+                      <div className="relative aspect-square rounded-md overflow-hidden hover:opacity-90 transition-opacity">
                         <img
                           src={
                             "/images/oldworks/" + data.project_code + "@3x.png"
@@ -183,12 +92,11 @@ function WatchOldProject() {
                           alt=""
                           className="w-full h-full object-cover"
                         />
-                      </button>
+                      </div>
                       {/* 相簿縮圖 */}
                       {data.albums.map((item, index) => (
-                        <button
+                        <div
                           key={index}
-                          onClick={() => mainSwiper.slideTo(index + 1)}
                           className="relative aspect-square rounded-md overflow-hidden hover:opacity-90 transition-opacity"
                         >
                           <img
@@ -196,15 +104,15 @@ function WatchOldProject() {
                             alt=""
                             className="w-full h-full object-cover"
                           />
-                        </button>
+                        </div>
                       ))}
                     </div>
                   )}
                 </div>
 
-                {/* 右側基本資訊 */}
-                <div>
-                  {/* 標題區 */}
+                {/* 右側資訊區域 */}
+                <div className="flex flex-col gap-6">
+                  {/* 標題 */}
                   <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 mb-4">
                       {data.title}
@@ -230,8 +138,6 @@ function WatchOldProject() {
                       </div>
                     </div>
                   </div>
-
-                  {/* 建案規格 */}
                   <div>
                     <h2 className="text-xl font-bold text-gray-900 mb-6 pb-2 border-b">
                       建案規格
@@ -263,7 +169,6 @@ function WatchOldProject() {
                       </div>
                     </div>
                   </div>
-                  {/* 下區塊：單欄式布局 */}
                   <div className="pt-8">
                     {/* 建築團隊 */}
                     <div className="mb-8">

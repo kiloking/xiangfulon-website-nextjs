@@ -5,7 +5,6 @@ const nextConfig = {
   ...(process.env.EXPORT_STATIC === "true" && {
     output: "export",
     distDir: "dist",
-    assetPrefix: ".",
     trailingSlash: true,
     images: {
       unoptimized: true,
