@@ -10,8 +10,8 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 import Head from "../../head";
-import ProjectSwiper from "../../../components/ProjectSwiper";
 import ProjectMainSwiper from "../../../components/ProjectMainSwiper";
+import BackButton from "../../../components/BackButton";
 
 // 為靜態導出生成所有可能的參數組合
 export async function generateStaticParams() {
@@ -23,6 +23,24 @@ export async function generateStaticParams() {
 function WatchOldProject({ params }) {
   const pid = params.pid;
   const data = oldProjects.find((item) => item.project_code === pid);
+
+  // 如果沒有找到對應的建案資料，返回 404 或錯誤頁面
+  if (!data) {
+    return (
+      <div className="min-h-screen bg-zinc-100 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">建案不存在</h1>
+          <Link
+            href="/work-1"
+            className="inline-flex items-center gap-2 bg-[#8c2026] text-white px-4 py-2 rounded-lg hover:bg-[#8c2026]/90 transition-colors"
+          >
+            <FaArrowLeft />
+            返回建案列表
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-zinc-100 pb-14">
@@ -37,7 +55,7 @@ function WatchOldProject({ params }) {
       {/* <ProjectSwiper data={data} /> */}
       <div className="fixed h-[60vh] pointer-events-none w-full opacity-100">
         <img
-          src={"/images/oldworks/" + data.project_code + "@3x.png"}
+          src={"/images/sky.png"}
           className="w-full h-full object-cover"
           alt=""
         />
@@ -46,20 +64,10 @@ function WatchOldProject({ params }) {
       {data && (
         <div className="relative ">
           {/* 返回按鈕 */}
-          <div className="fixed top-20 left-8 z-50">
-            <Link
-              href="/work-1"
-              className="group relative bg-black/8 backdrop-blur-xl bg-white/90 px-5 py-3 rounded-full hover:bg-black/12 transition-all duration-300 flex items-center gap-2.5 text-gray-900 hover:text-black"
-            >
-              <div className="relative flex items-center justify-center w-6 h-6 bg-[#8c2026] rounded-full">
-                <FaList className="text-white group-hover:text-white/80 text-sm transition-colors duration-300" />
-              </div>
-              <span className="font-medium text-sm">返回列表</span>
-            </Link>
-          </div>
+          <BackButton />
 
           {/* 主要內容區域 */}
-          <div className="w-11/12 mx-auto px-4 pt-[12%]">
+          <div className="w-full md:w-11/12 mx-auto px-4 pt-[35%] md:pt-[12%]">
             {/* 上區塊：兩欄式布局 */}
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -77,35 +85,6 @@ function WatchOldProject({ params }) {
                         className="w-full h-full object-contain rounded-lg"
                         alt={data.title}
                       />
-                    </div>
-                  )}
-
-                  {/* 縮圖預覽 */}
-                  {data.albums && data.albums.length > 0 && (
-                    <div className="grid grid-cols-5 gap-1.5">
-                      {/* 外觀圖縮圖 */}
-                      <div className="relative aspect-square rounded-md overflow-hidden hover:opacity-90 transition-opacity">
-                        <img
-                          src={
-                            "/images/oldworks/" + data.project_code + "@3x.png"
-                          }
-                          alt=""
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      {/* 相簿縮圖 */}
-                      {data.albums.map((item, index) => (
-                        <div
-                          key={index}
-                          className="relative aspect-square rounded-md overflow-hidden hover:opacity-90 transition-opacity"
-                        >
-                          <img
-                            src={"/images/oldworks/album/" + item}
-                            alt=""
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      ))}
                     </div>
                   )}
                 </div>
@@ -128,10 +107,14 @@ function WatchOldProject({ params }) {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 mt-2">
-                      <div className="flex items-center gap-2 text-white bg-black/80 px-3 py-1 rounded-lg hover:bg-black/90 cursor-pointer transition-all duration-300">
+                      <a
+                        href={`https://siangfulong.com.tw/contact/`}
+                        target="_blank"
+                        className="flex items-center gap-2 text-white bg-black/80 px-3 py-1 rounded-lg hover:bg-black/90 cursor-pointer transition-all duration-300"
+                      >
                         <FaMap className="" />
-                        <div>連到地圖</div>
-                      </div>
+                        <div>聯絡我們</div>
+                      </a>
                       <div className="flex items-center gap-2 text-white bg-red-900/90 px-3 py-1 rounded-lg hover:bg-red-900 cursor-pointer transition-all duration-300">
                         <FaExternalLinkAlt className="" />
                         詳細介紹

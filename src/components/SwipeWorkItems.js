@@ -39,7 +39,7 @@ function SwipeWorkItems({ data }) {
           return (
             <SwiperSlide key={"a0" + index}>
               <Link
-                href={"/watchproject/" + item.project_code}
+                href={"/watchproject/" + item.project_code + "?from=home"}
                 className={
                   "flex flex-col justify-start items-start pb-14 transition-all duration-1000 w-full"
                 }

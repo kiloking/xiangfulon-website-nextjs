@@ -21,10 +21,7 @@ function WorkTwo_Card() {
   }, []);
 
   return (
-    <div
-      className="w-full h-screen bg-[#F9F9F9] "
-      style={{ backgroundImage: `url(${"/images/blockbg.png"})` }}
-    >
+    <div className="w-full min-h-screen bg-[#F9F9F9] ">
       <Head
         meta_title="三重建案集英堡六期 | 優質住宅推薦 | 祥富龍/祥旭龍 - 三重在地 建商|新北市三重區建案"
         meta_description="【集英堡六期-三重區頂級建案】位於新北市三重區集英路17號，由知名建 商祥富龍打造。規劃坪數42.59-66.72坪，擁有11層樓高+B2F，共40戶+40車。 優質建築設計由巨仲建築師事務所操刀，施工營造由振城營造股份有限公司負責。20 14年推出，成為三重建案的矚目焦點。集英堡六期，您在三重區的最佳選擇，品質與 信譽保證。"
@@ -37,7 +34,7 @@ function WorkTwo_Card() {
               return (
                 <Link
                   key={"a0" + index}
-                  href={`/watchproject/${item.project_code}`}
+                  href={`/watchproject/${item.project_code}?from=work-2`}
                   className={
                     "flex flex-col justify-start items-start pb-1 transition-all duration-1000 w-full hover:brightness-110"
                   }

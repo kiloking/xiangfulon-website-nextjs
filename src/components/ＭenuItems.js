@@ -5,7 +5,7 @@ export const MenuItems01 = [
     cName: "dropdown-link",
   },
   {
-    title: "品牌理念",
+    title: "品牌核心價值",
     path: "/about-2",
     cName: "dropdown-link",
   },

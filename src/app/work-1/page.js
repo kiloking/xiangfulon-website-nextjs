@@ -19,10 +19,7 @@ function WorkOne_Card() {
   }, []);
 
   return (
-    <div
-      className="w-full h-screen bg-[#F9F9F9] "
-      style={{ backgroundImage: `url(${"/images/blockbg.png"})` }}
-    >
+    <div className="w-full min-h-screen bg-[#F9F9F9] bg-cover bg-center ">
       <div className="px-10 py-16">
         <MenuTwo />
         <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -31,7 +28,7 @@ function WorkOne_Card() {
               return (
                 <Link
                   key={"a0" + index}
-                  href={`/watchproject/${item.project_code}`}
+                  href={`/watchproject/${item.project_code}?from=work-1`}
                   className={
                     "flex flex-col justify-start items-start pb-1 transition-all duration-1000 w-full hover:brightness-110"
                   }

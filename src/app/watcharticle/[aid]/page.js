@@ -26,7 +26,7 @@ function WatchArticle({ params }) {
         </Link>
       </div>
       {data ? (
-        <div className="px-10 py-14 flex flex-col md:flex-row gap-20">
+        <div className="px-10 md:py-14 py-5 flex flex-col md:flex-row gap-20">
           <div className="w-full md:w-1/2 flex flex-col gap-5 overflow-y-auto  max-h-[520px] p-3">
             <div className="flex gap-4 items-center">
               <div className="text-[#003049] ">
