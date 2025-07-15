@@ -6,7 +6,7 @@ function MenuOne() {
   const pathname = usePathname();
   return (
     <div className="py-12">
-      <ul className="flex gap-6 text-[20px]">
+      <ul className="flex gap-2 md:gap-6 text-[20px] justify-center md:justify-start ">
         {MenuItems01.map((item, index) => {
           return (
             <li key={index}>

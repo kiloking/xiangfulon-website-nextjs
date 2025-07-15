@@ -8,7 +8,7 @@ function AboutTwo() {
       className="w-full flex flex-col md:flex-row justify-between items-start md:overflow-hidden md:h-screen bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${"/images/blockbg.png"})` }}
     >
-      <div className="w-full md:w-[60%]  md:h-screen  px-10 py-16 bg-center bg-no-repeat bg-cover md:overflow-y-auto h-full flex flex-col justify-between gap-8">
+      <div className="w-full md:w-1/2  md:h-screen  px-10 py-16 bg-center bg-no-repeat bg-cover md:overflow-y-auto h-full flex flex-col justify-between gap-8">
         <MenuOne />
 
         <motion.div
@@ -123,7 +123,7 @@ function AboutTwo() {
           duration: 0.6,
           delay: 0.1,
         }}
-        className="w-full md:w-[40%] h-[40vh] md:h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center pt-0 md:pt-0 px-10"
+        className="w-full md:w-1/2 h-[40vh] md:h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center pt-0 md:pt-10 px-14"
       >
         <img
           src="/images/about/about2-p01.png"
