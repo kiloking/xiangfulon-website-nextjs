@@ -19,9 +19,9 @@ function AboutOne() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px]"
+          className=" leading-10 text-[16px]"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             祥富旭景，一生好宅
           </div>
           創辦人李友成先生自工地基層出發，一步一腳印累積深厚實務經驗。
@@ -43,9 +43,9 @@ function AboutOne() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px] py-10"
+          className=" leading-10 text-[16px] py-10"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             「穩健築基，誠信為本。」
           </div>
           企業傳承至今已近二十年，無論是面對市場更迭或全球金融風暴，
@@ -63,9 +63,9 @@ function AboutOne() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px]"
+          className=" leading-10 text-[16px]"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             「不求案量，而求精緻。」
           </div>
           <span className="font-bold">
@@ -92,7 +92,9 @@ function AboutOne() {
           我們深信，傳承不只是經驗的累積， 更是延續對品質的堅持與對家的初心。
           <br />
           <br />
-          未來，祥富龍／祥旭龍將持續用心築家，
+          <span className="text-[18px] font-bold">
+            未來，祥富龍／祥旭龍將持續用心築家，
+          </span>
           <br />
           為每一戶家庭築起安心、溫暖、恆久的好宅。
           <br />

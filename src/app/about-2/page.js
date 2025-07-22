@@ -19,9 +19,9 @@ function AboutTwo() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px]"
+          className=" leading-10 text-[16px]"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             Clarity - 產權清楚・交易透明
           </div>
           <span className=" underline">每一塊土地、每一筆交易，都有據可循</span>
@@ -38,9 +38,9 @@ function AboutTwo() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px]"
+          className=" leading-10 text-[16px]"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             Comfort- 用心設計・住得舒適
           </div>
           <span className=" underline">Comfort- 用心設計・住得舒適</span>
@@ -57,9 +57,9 @@ function AboutTwo() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px]"
+          className=" leading-10 text-[16px]"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             Quality- 按圖施工・品質至上
           </div>
           <span className=" underline">
