@@ -18,7 +18,7 @@ export default function Home() {
         }}
         className=" absolute left-5  md:left-10 bottom-10 z-30 bg-white w-11/12 md:w-[400px] p-5 shadow-md"
       >
-        <div className="text-xl md:text-[22px] my-3 text-[#8c2026]  font-bold">
+        <div className="text-xl md:text-[22px] my-3 text-[#012c48]  font-bold">
           建築，就是生命的鏡子
         </div>
         <div className="text-base text-zinc-600 pb-3 leading-6 tracking-wide">
@@ -26,7 +26,7 @@ export default function Home() {
           貝聿銘
         </div>
       </motion.div>
-      <div className="bg-[#ffffffee] text-[#8c2026] w-full h-12 flex justify-end items-center pr-5 text-lg font-bold fixed bottom-0 z-10">
+      <div className="bg-[#ffffffee] text-[#012c48] w-full h-12 flex justify-end items-center pr-5 text-lg font-bold fixed bottom-0 z-10">
         祥富旭景，一生好宅
       </div>
     </>

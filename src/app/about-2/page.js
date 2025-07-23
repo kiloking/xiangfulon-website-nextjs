@@ -78,9 +78,9 @@ function AboutTwo() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px]"
+          className=" leading-10 text-[16px]"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             Sustainability- 建材創新求變・邁向永續建築
           </div>
           <span className=" underline">
@@ -99,9 +99,9 @@ function AboutTwo() {
             duration: 0.6,
             delay: 0.1,
           }}
-          className=" leading-10 text-[20px]"
+          className=" leading-10 text-[16px]"
         >
-          <div className="text-[#8c2026] text-xl font-bold py-3">
+          <div className="text-[#8c2026] text-[18px] font-bold py-3">
             Assurance-貼心售後・安心不止交屋
           </div>
           <span className=" underline">有溫度的保固服務，讓家更有依靠</span>

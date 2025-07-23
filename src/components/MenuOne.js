@@ -13,7 +13,7 @@ function MenuOne() {
               <Link
                 href={item.path}
                 className={
-                  "pb-2 border-[#8c2026] hover:border-b-4 text-[#8c2026] " +
+                  "pb-2 border-[#000] hover:border-b-4 text-[#000] " +
                   (pathname === item.path ? "  border-b-4  " : " border-0")
                 }
               >
